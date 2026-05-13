@@ -185,6 +185,7 @@ let connectorList: array<connectorTypes> = [
   Processors(TRUELAYER),
   Processors(TRUSTLY),
   Processors(IMERCHANTSOLUTIONS),
+  Processors(VNPAY),
 ]
 
 let connectorListForLive: array<connectorTypes> = [
@@ -727,6 +728,26 @@ let imerchantsolutionsInfo = {
   description: "iMerchant Solutions is a modern payment processing platform that empowers businesses to accept payments globally with fast and low-friction onboarding.",
 }
 
+let vnpayInfo = {
+  description: "VNPay is a leading Vietnamese payment gateway supporting online banking and QR code payments across major banks in Vietnam.",
+  validate: [
+    {
+      placeholder: "Enter Hash Secret",
+      label: "Hash Secret",
+      name: "connector_account_details.api_key",
+      isRequired: true,
+      encodeToBase64: false,
+    },
+    {
+      placeholder: "Enter TMN Code",
+      label: "TMN Code",
+      name: "connector_account_details.key1",
+      isRequired: true,
+      encodeToBase64: false,
+    },
+  ],
+}
+
 let signifydInfo = {
   description: "One platform to protect the entire shopper journey end-to-end",
   validate: [
@@ -1001,6 +1022,7 @@ let getConnectorNameString = (connector: processorTypes) =>
   | FISERVCOMMERCEHUB => "fiservcommercehub"
   | TRUSTLY => "trustly"
   | IMERCHANTSOLUTIONS => "imerchantsolutions"
+  | VNPAY => "vnpay"
   }
 
 let getPayoutProcessorNameString = (payoutProcessor: payoutProcessorTypes) =>
@@ -1202,6 +1224,7 @@ let getConnectorNameTypeFromString = (connector, ~connectorType=ConnectorTypes.P
     | "fiservcommercehub" => Processors(FISERVCOMMERCEHUB)
     | "trustly" => Processors(TRUSTLY)
     | "imerchantsolutions" => Processors(IMERCHANTSOLUTIONS)
+    | "vnpay" => Processors(VNPAY)
     | _ => UnknownConnector("Not known")
     }
   | PayoutProcessor =>
@@ -1381,6 +1404,7 @@ let getProcessorInfo = (connector: ConnectorTypes.processorTypes) => {
   | FISERVCOMMERCEHUB => fiservcommercehubInfo
   | TRUSTLY => trustlyInfo
   | IMERCHANTSOLUTIONS => imerchantsolutionsInfo
+  | VNPAY => vnpayInfo
   }
 }
 
@@ -2363,6 +2387,7 @@ let getDisplayNameForProcessor = (connector: ConnectorTypes.processorTypes) =>
   | FISERVCOMMERCEHUB => "Fiserv Commerce Hub"
   | TRUSTLY => "Trustly"
   | IMERCHANTSOLUTIONS => "iMerchant Solutions"
+  | VNPAY => "VNPay"
   }
 
 let getDisplayNameForPayoutProcessor = (payoutProcessor: ConnectorTypes.payoutProcessorTypes) =>

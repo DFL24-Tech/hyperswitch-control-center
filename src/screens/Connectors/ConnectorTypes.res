@@ -140,6 +140,7 @@ type processorTypes =
   | FISERVCOMMERCEHUB
   | TRUSTLY
   | IMERCHANTSOLUTIONS
+  | VNPAY
 
 type payoutProcessorTypes =
   | ADYEN
