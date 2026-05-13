@@ -1,0 +1,16 @@
+services:
+  hyperswitch-control-center:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        BUILD_TYPE: prod
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    volumes:
+      - ./config/config.toml:/usr/src/app/dist/server/config/config.toml:ro
+      - ./config/theme.json:/usr/src/app/dist/server/config/theme.json:ro
+    environment:
+      NODE_ENV: dev
+    restart: unless-stopped
