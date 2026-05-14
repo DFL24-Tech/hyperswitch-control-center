@@ -140,6 +140,7 @@ type processorTypes =
   | FISERVCOMMERCEHUB
   | TRUSTLY
   | IMERCHANTSOLUTIONS
+  | MOMO
 
 type payoutProcessorTypes =
   | ADYEN
@@ -235,6 +236,7 @@ type paymentMethodTypes =
   | Boleto
   | NetworkToken
   | Ideal
+  | Momo
   | UnknownPaymentMethodType(string)
 
 type advancedConfigurationList = {

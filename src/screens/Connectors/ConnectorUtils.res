@@ -185,6 +185,7 @@ let connectorList: array<connectorTypes> = [
   Processors(TRUELAYER),
   Processors(TRUSTLY),
   Processors(IMERCHANTSOLUTIONS),
+  Processors(MOMO),
 ]
 
 let connectorListForLive: array<connectorTypes> = [
@@ -232,6 +233,7 @@ let connectorListForLive: array<connectorTypes> = [
   Processors(WORLDPAYMODULAR),
   Processors(PAYJUSTNOW),
   Processors(PAYJUSTNOWINSTORE),
+  Processors(MOMO),
 ]
 
 let connectorListWithAutomaticFlow = [PAYPAL]
@@ -273,6 +275,7 @@ let getPaymentMethodTypeFromString = paymentMethodType => {
   | "amazon_pay" => AmazonPay
   | "network_token" => NetworkToken
   | "ideal" => Ideal
+  | "momo" => Momo
   | _ => UnknownPaymentMethodType(paymentMethodType)
   }
 }
@@ -887,6 +890,10 @@ let trustlyInfo = {
   description: "Trustly provides a secure, efficient, and cost-effective payment solution for your businesses to offer customers a convenient and hassle-free payment experience.",
 }
 
+let momoInfo = {
+  description: "MoMo is a leading mobile e-wallet and payment service in Vietnam, enabling secure QR and redirect-based payments for millions of users.",
+}
+
 let getConnectorNameString = (connector: processorTypes) =>
   switch connector {
   | ADYEN => "adyen"
@@ -1001,6 +1008,7 @@ let getConnectorNameString = (connector: processorTypes) =>
   | FISERVCOMMERCEHUB => "fiservcommercehub"
   | TRUSTLY => "trustly"
   | IMERCHANTSOLUTIONS => "imerchantsolutions"
+  | MOMO => "momo"
   }
 
 let getPayoutProcessorNameString = (payoutProcessor: payoutProcessorTypes) =>
@@ -1202,6 +1210,7 @@ let getConnectorNameTypeFromString = (connector, ~connectorType=ConnectorTypes.P
     | "fiservcommercehub" => Processors(FISERVCOMMERCEHUB)
     | "trustly" => Processors(TRUSTLY)
     | "imerchantsolutions" => Processors(IMERCHANTSOLUTIONS)
+    | "momo" => Processors(MOMO)
     | _ => UnknownConnector("Not known")
     }
   | PayoutProcessor =>
@@ -1381,6 +1390,7 @@ let getProcessorInfo = (connector: ConnectorTypes.processorTypes) => {
   | FISERVCOMMERCEHUB => fiservcommercehubInfo
   | TRUSTLY => trustlyInfo
   | IMERCHANTSOLUTIONS => imerchantsolutionsInfo
+  | MOMO => momoInfo
   }
 }
 
@@ -2363,6 +2373,7 @@ let getDisplayNameForProcessor = (connector: ConnectorTypes.processorTypes) =>
   | FISERVCOMMERCEHUB => "Fiserv Commerce Hub"
   | TRUSTLY => "Trustly"
   | IMERCHANTSOLUTIONS => "iMerchant Solutions"
+  | MOMO => "MoMo"
   }
 
 let getDisplayNameForPayoutProcessor = (payoutProcessor: ConnectorTypes.payoutProcessorTypes) =>

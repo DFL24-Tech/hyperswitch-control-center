@@ -28,6 +28,7 @@ let getPMTFromString = paymentMethodType => {
   | "alipay" => AliPay
   | "wechatpay" => WeChatPay
   | "directcarrierbilling" => DirectCarrierBilling
+  | "momo" => Momo
   | _ => UnknownPaymentMethodType(paymentMethodType)
   }
 }
