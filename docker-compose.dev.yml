@@ -1,5 +1,5 @@
 services:
-  hyperswitch-control-center:
+  web:
     build:
       context: .
       dockerfile: Dockerfile
